@@ -1,0 +1,152 @@
+API Created 1:
+http://localhost:5000/api/v1/auth/register
+customer created - success	
+{
+    "_id": "68f79c38729f446c2ebff9fc",
+    "name": "Harsha",
+    "email": "harshasri042@gmail.com",
+    "role": "customer",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Zjc5YzM4NzI5ZjQ0NmMyZWJmZjlmYyIsImlhdCI6MTc2MTA1Nzg0OSwiZXhwIjoxNzYzNjQ5ODQ5fQ.vqmEI99z4rZSSzr1QL5Qg7sVm5EYjrC9xp7RUMY0PpQ"
+}
+
+
+
+
+API Created 2:
+http://localhost:5000/api/v1/auth/register
+store_owner created - success
+{
+    "_id": "68f79e97b025b3c25cdc26e6",
+    "name": "Vitta Mart",
+    "email": "owner@store.com",
+    "role": "store_owner",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Zjc5ZTk3YjAyNWIzYzI1Y2RjMjZlNiIsImlhdCI6MTc2MTA1ODQ1NSwiZXhwIjoxNzYzNjUwNDU1fQ.LAa3gOdI4Mf5j32OCQNpO2MDYpY9tNfK0Rs8QXUwleY"
+  }  -- pasted in thee postman to create the store
+
+
+
+API Created 3:
+http://localhost:5000/api/v1/stores
+store created - success
+
+{
+    "owner": "68f79e97b025b3c25cdc26e6",
+    "name": "Harsha's Fresh Mart",
+    "description": "A local market specializing in organic produce.",
+    "address": "123 Main Street, New York, NY 10001",
+    "phone": "555-123-4567",
+    "location": {
+        "coordinates": [
+            -73.9682,
+            40.7851
+        ],
+        "type": "Point"
+    },
+    "_id": "68f79fd7b025b3c25cdc26ea",
+    "createdAt": "2025-10-21T14:59:35.847Z",
+    "updatedAt": "2025-10-21T14:59:35.847Z",
+    "__v": 0
+}
+
+
+API Created 4:
+To find the nearby stores near my store (Range 10km) -- found 1 success
+{
+    "success": true,
+    "count": 1,
+    "message": "Found 1 stores within 10km.",
+    "data": [
+        {
+            "_id": "68f79fd7b025b3c25cdc26ea",
+            "owner": "68f79e97b025b3c25cdc26e6",
+            "name": "Harsha's Fresh Mart",
+            "description": "A local market specializing in organic produce.",
+            "address": "123 Main Street, New York, NY 10001",
+            "phone": "555-123-4567",
+            "location": {
+                "coordinates": [
+                    -73.9682,
+                    40.7851
+                ],
+                "type": "Point"
+            },
+            "createdAt": "2025-10-21T14:59:35.847Z",
+            "updatedAt": "2025-10-21T14:59:35.847Z",
+            "__v": 0,
+            "distance_m": 0
+        }
+    ]
+}
+ 
+
+API Created 5:
+To find nearby stores within range of 10kms using latitude & longitude 
+http://localhost:5000/api/v1/stores/nearby?latitude=34.05&longitude=-118.24&distance=10
+
+{
+    "success": true,
+    "count": 0,
+    "message": "Found 0 stores within 10km.",
+    "data": []
+}
+
+
+API Created 6:
+To add a product in the store using the store id , category id and the brand id - success
+http://localhost:5000/api/v1/products
+
+{
+    "store": "68f79fd7b025b3c25cdc26ea",(store id)
+    "name": "E-commerce Widget",
+    "description": "A basic test product.",
+    "price": 99.99,
+    "category": "68f7ae967ef4ef3f5e1b5287",
+    "brand": "68f7aeb87ef4ef3f5e1b528d",
+    "stockCount": 10,
+    "images": [],
+    "_id": "68f7b0dc07eaae03cd13ff8c",(product id)
+    "createdAt": "2025-10-21T16:12:12.575Z",
+    "updatedAt": "2025-10-21T16:12:12.575Z",
+    "__v": 0
+
+CUSTOMER TOKEN : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Zjc5YzM4NzI5ZjQ0NmMyZWJmZjlmYyIsImlhdCI6MTc2MTA1Nzg0OSwiZXhwIjoxNzYzNjQ5ODQ5fQ.vqmEI99z4rZSSzr1QL5Qg7sVm5EYjrC9xp7RUMY0PpQ
+}
+
+
+
+API Created 7:
+To create order & test email - success
+
+http://localhost:5000/api/v1/orders
+
+{
+    "user": "68f79c38729f446c2ebff9fc",
+    "orderItems": [
+        {
+            "name": "E-commerce Widget",
+            "qty": 1,
+            "price": 99.99,
+            "product": "68f7b0dc07eaae03cd13ff8c",
+            "store": "68f79fd7b025b3c25cdc26ea",
+            "_id": "68f7b49fc9e77ac452566be9"
+        }
+    ],
+    "shippingAddress": {
+        "address": "456 Order Test Ave",
+        "city": "TestCity",
+        "postalCode": "98765"
+    },
+    "paymentMethod": "Simulated",
+    "paymentResult": {
+        "id": "SIMULATED_RAZORPAY_ID",
+        "status": "paid"
+    },
+    "totalPrice": 99.99,
+    "isPaid": true,
+    "paidAt": "2025-10-21T16:28:15.217Z",
+    "orderStatus": "Processing",
+    "_id": "68f7b49fc9e77ac452566be8",
+    "createdAt": "2025-10-21T16:28:15.234Z",
+    "updatedAt": "2025-10-21T16:28:15.234Z",
+    "__v": 0
+}
