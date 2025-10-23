@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Client</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #dashboard { display: none; } 
+    </style>
+</head>
+<body>
+    <h1>Marketplace API Client</h1>
+    
+    <section id="auth">
+        <h2>Login / Register</h2>
+        <p>Use Login to automatically register if the user doesn't exist.</p>
+        <input type="text" id="name" placeholder="Full Name (required for registration)">
+        <input type="email" id="email" placeholder="Email (customer@test.com)">
+        <input type="password" id="password" placeholder="Password (pass)">
+        
+        <button onclick="registerUser()">Register</button>
+        <button onclick="loginUser()">Login</button>
+        <button onclick="logoutUser()">Logout</button>
+        <p>Status: <span id="tokenDisplay">No Token</span></p>
+    </section>
+
+    <hr>
+
+    <section id="dashboard">
+        <h2>Dashboard Operations</h2>
+
+        <section id="search">
+            <h3>Store Search (Geospatial)</h3>
+            <input type="text" id="latitude" placeholder="Latitude (e.g., 34.05)" value="">
+            <input type="text" id="longitude" placeholder="Longitude (e.g., -118.24)" value="">
+            <button onclick="searchStores()">Search Stores</button>
+            <pre id="storeResults">Search results will appear here.</pre>
+        </section>
+
+        <section id="order">
+    <h3>Place Test Order</h3>
+    <p>Order uses hardcoded IDs, but you can customize the product name and details.</p>
+    
+    <input type="text" id="order_product_name" placeholder="Product Name (e.g., Luxury Watch)" value="">
+    <input type="text" id="order_product_category" placeholder="Category (e.g., Electronics)" value="">
+    <input type="text" id="order_product_brand" placeholder="Brand (e.g., Acme)" value="">
+    <input type="number" id="order_product_qty" placeholder="Quantity" value="" min="1">
+    
+    <button onclick="placeOrder()">Place Order</button>
+    <pre id="orderResults">Order response will appear here.</pre>
+</section>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
